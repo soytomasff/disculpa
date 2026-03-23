@@ -1,0 +1,312 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --text: #fff4ea;
+  --glass: rgba(255, 255, 255, 0.08);
+  --line: rgba(255, 245, 235, 0.14);
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: Georgia, "Times New Roman", serif;
+  background:
+    radial-gradient(circle at center, rgba(255, 210, 120, 0.22), transparent 18%),
+    linear-gradient(180deg, #5c0000 0%, #8d0b00 42%, #c42300 74%, #ff6a00 100%);
+  color: var(--text);
+}
+
+.scene {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  perspective: 1200px;
+  touch-action: none;
+}
+
+.bg {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  opacity: 0.26;
+  pointer-events: none;
+}
+
+.bg1 {
+  width: 320px;
+  height: 320px;
+  left: 6%;
+  top: 14%;
+  background: rgba(255, 180, 100, 0.24);
+}
+
+.bg2 {
+  width: 420px;
+  height: 420px;
+  right: 4%;
+  bottom: 6%;
+  background: rgba(255, 110, 20, 0.2);
+}
+
+.stage {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  transform-style: preserve-3d;
+}
+
+.orbit-system {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.orbit {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-style: preserve-3d;
+  border-radius: 50%;
+}
+
+.orbit-1 {
+  width: 320px;
+  height: 320px;
+  margin-left: -160px;
+  margin-top: -160px;
+}
+
+.orbit-2 {
+  width: 480px;
+  height: 480px;
+  margin-left: -240px;
+  margin-top: -240px;
+}
+
+.orbit-3 {
+  width: 650px;
+  height: 650px;
+  margin-left: -325px;
+  margin-top: -325px;
+}
+
+.word {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform-origin: center center;
+  white-space: nowrap;
+  user-select: none;
+  pointer-events: none;
+  color: rgba(255, 245, 235, 0.9);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  line-height: 1;
+  font-size: clamp(11px, 1.3vw, 18px) !important;
+}
+
+.word.big {
+  font-weight: 700;
+  font-size: clamp(13px, 1.6vw, 22px) !important;
+  color: #fff7ec;
+}
+
+.word.soft {
+  color: rgba(255, 245, 235, 0.68);
+  font-size: clamp(10px, 1.1vw, 15px) !important;
+}
+
+.center-wrap {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  display: grid;
+  place-items: center;
+  z-index: 10;
+}
+
+.gif-halo {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background-image: url("https://downloadwap.com/thumbs3/screensavers/d/new/animals/puss_in_boots-7372.gif");
+  background-size: cover;
+  background-position: center;
+  filter: blur(10px) brightness(1.05);
+  opacity: 0.55;
+  transform: scale(1.08);
+  animation: pulse 3s ease-in-out infinite;
+}
+
+.photo-card {
+  width: 210px;
+  height: 210px;
+  perspective: 1200px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.photo-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 1.2s ease;
+}
+
+.photo-card.flipped .photo-inner {
+  transform: rotateY(180deg);
+}
+
+.photo-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  backface-visibility: hidden;
+  border: 5px solid rgba(255, 244, 229, 0.88);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.28);
+  background: radial-gradient(circle at 35% 35%, #ffcf8f, #ff9231 58%, #8c1800 100%);
+}
+
+.photo-face img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+.actions {
+  position: absolute;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
+  z-index: 20;
+}
+
+.actions button {
+  border: 1px solid var(--line);
+  background: var(--glass);
+  color: var(--text);
+  padding: 12px 18px;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-family: inherit;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.actions button:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.12);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1.04);
+    opacity: 0.45;
+  }
+  50% {
+    transform: scale(1.12);
+    opacity: 0.65;
+  }
+}
+
+@media (max-width: 900px) {
+  .orbit-1 {
+    width: 250px;
+    height: 250px;
+    margin-left: -125px;
+    margin-top: -125px;
+  }
+
+  .orbit-2 {
+    width: 360px;
+    height: 360px;
+    margin-left: -180px;
+    margin-top: -180px;
+  }
+
+  .orbit-3 {
+    width: 480px;
+    height: 480px;
+    margin-left: -240px;
+    margin-top: -240px;
+  }
+
+  .center-wrap {
+    width: 220px;
+    height: 220px;
+  }
+
+  .gif-halo {
+    width: 235px;
+    height: 235px;
+  }
+
+  .photo-card {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+@media (max-width: 600px) {
+  .orbit-1 {
+    width: 200px;
+    height: 200px;
+    margin-left: -100px;
+    margin-top: -100px;
+  }
+
+  .orbit-2 {
+    width: 280px;
+    height: 280px;
+    margin-left: -140px;
+    margin-top: -140px;
+  }
+
+  .orbit-3 {
+    width: 380px;
+    height: 380px;
+    margin-left: -190px;
+    margin-top: -190px;
+  }
+
+  .center-wrap {
+    width: 185px;
+    height: 185px;
+  }
+
+  .gif-halo {
+    width: 205px;
+    height: 205px;
+    opacity: 0.58;
+  }
+
+  .photo-card {
+    width: 150px;
+    height: 150px;
+  }
+
+  .actions {
+    bottom: 20px;
+  }
+
+  .actions button {
+    padding: 10px 14px;
+    font-size: 0.92rem;
+  }
+}
